@@ -23,7 +23,7 @@
 ROOT_DIR		= $(shell pwd)
 YOCTO_DIR		= yocto
 BUILD_DIR		= $(YOCTO_DIR)/build
-DOWNLOAD_DIR		= downloads
+DOWNLOAD_DIR		= $(ROOT_DIR)/downloads
 OUT_DIR			= images
 META_RASP_DIR		= $(YOCTO_DIR)/meta-raspberry
 META_OE_DIR		= $(YOCTO_DIR)/meta-openembedded

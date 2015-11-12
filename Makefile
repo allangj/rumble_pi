@@ -47,6 +47,8 @@ clean:
 
 
 distclean:
+	@ echo "Removing directories."
+	@rm -rf $(YOCTO_DIR) $(OUT_DIR) $(BUILD_DIR) $(DOWNLOAD_DIR)
 
 
 help:

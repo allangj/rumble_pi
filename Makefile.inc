@@ -1,4 +1,4 @@
-# Initial Makefile to compile the Rumble project
+# Makefile include to compile the Rumble project
 # Copyright (c) 2015 "Allan Granados, allangj1618@gmail.com"
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,34 +19,25 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #THE SOFTWARE.
 
-include Makefile.inc
+# Internal of Rumble PI structure
+ROOT_DIR		= $(shell pwd)
+YOCTO_DIR		= yocto
+BUILD_DIR		= $(YOCTO_DIR)/build
+DOWNLOAD_DIR		= downloads
+OUT_DIR			= images
+META_RASP_DIR		= $(YOCTO_DIR)/meta-raspberry
+META_OE_DIR		= $(YOCTO_DIR)/meta-openembedded
+META_OE_OE_DIR		= $(META_OE_DIR)/meta-oe
+META_OE_MULTIMEDIA	= $(META_OE_DIR)/meta-multimedia
 
-# This top-level Makefile can *not* be executed in parallel
-.NOTPARALLEL:
+# Meta layers URLS and branches/tags
+# meta-raspberry depends on yocto master branch accordig summary
+YOCTO_GIT 		= "git://git.yoctoproject.org/poky"
+YOCTO_BRANCH		= "master"
 
-.PHONY: all build config clean distclean help
+META_RASP_PI_GIT	= "git://git.yoctoproject.org/meta-raspberrypi"
+META_RASP_PI_BRANCH	= "master"
 
-all:
-
-
-build:
-
-
-config:
-	@echo "Cloning repositories"
-	@git clone -b $(YOCTO_BRANCH) $(YOCTO_GIT) $(YOCTO_DIR)
-	@git clone -b $(META_RASP_PI_BRANCH) $(META_RASP_PI_GIT) $(META_RASP_DIR)
-	@git clone -b $(META_OE_BRANCH) $(META_OE_GIT) $(META_OE_DIR)
-	@echo "Create output download and build directories"
-	@mkdir -p $(OUT_DIR) $(BUILD_DIR) $(DOWNLOAD_DIR)
-	@echo "Download directory link"
-	@ln -s $(DOWNLOAD_DIR) $(BUILD_DIR)/downloads
-
-
-clean:
-
-
-distclean:
-
-
-help:
+# meta-raspberry depends on openembedded master branch, layer meta-oe and meta-multimedia, accordig summary
+META_OE_GIT		= "git://git.openembedded.org/meta-openembedded"
+META_OE_BRANCH		= "master"

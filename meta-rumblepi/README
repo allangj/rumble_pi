@@ -1,0 +1,8 @@
+# META-RUMBLEPI
+Yocto layer for the Rumble PI project, which adjust the image
+to be build for the Raspberry PI and add the custom recipes
+and configuration files missing in the other dependand recipes.
+
+This meta-layer as dependency in the meta-raspberrypi layer and
+meta-oe and meta-multimedia layer from meta-openembedded.
+

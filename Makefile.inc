@@ -33,11 +33,11 @@ META_OE_MULTIMEDIA	= $(META_OE_DIR)/meta-multimedia
 # Meta layers URLS and branches/tags
 # meta-raspberry depends on yocto master branch accordig summary
 YOCTO_GIT 		= "git://git.yoctoproject.org/poky"
-YOCTO_BRANCH		= "master"
+YOCTO_BRANCH		= "fido"
 
 META_RASP_PI_GIT	= "git://git.yoctoproject.org/meta-raspberrypi"
-META_RASP_PI_BRANCH	= "master"
+META_RASP_PI_BRANCH	= "fido"
 
 # meta-raspberry depends on openembedded master branch, layer meta-oe and meta-multimedia, accordig summary
 META_OE_GIT		= "git://git.openembedded.org/meta-openembedded"
-META_OE_BRANCH		= "master"
+META_OE_BRANCH		= "fido"

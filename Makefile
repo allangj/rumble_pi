@@ -31,9 +31,9 @@ all: build
 
 build:
 	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
-	@source $(YOCTO_ENV_SCRIPT) 
-	@$(ECHO) $(CC_GREEN) "Start build process" $(CC_NORMAL)
-	@bitbake $(BB_RECIPE)
+	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build; \
+	$(ECHO) $(CC_GREEN) "Start build process" $(CC_NORMAL); \
+	bitbake $(BB_RECIPE)
 
 config:
 	@$(ECHO) $(CC_GREEN) "Cloning repositories" $(CC_NORMAL)
@@ -43,9 +43,7 @@ config:
 	@$(ECHO) $(CC_GREEN) "Create output download and build directories" $(CC_NORMAL)
 	@mkdir -p $(OUT_DIR) $(BUILD_DIR) $(DOWNLOAD_DIR)
 	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
-	@source $(YOCTO_ENV_SCRIPT) 
-	@$(ECHO) $(CC_GREEN) "Return to top dir" $(CC_NORMAL)
-	@cd $(ROOT_DIR)
+	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build
 	@$(ECHO) $(CC_GREEN) "Download directory link" $(CC_NORMAL)
 	@ln -s $(DOWNLOAD_DIR) $(BUILD_DIR)/downloads
 	@$(ECHO) $(CC_GREEN) "Copy configuration files" $(CC_NORMAL)
@@ -54,15 +52,15 @@ config:
 
 devshell:
 	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
-	@source $(YOCTO_ENV_SCRIPT) 
-	@$(ECHO) $(CC_GREEN) "Open devshell" $(CC_NORMAL)
-	@bitbake -c devshell $(BB_RECIPE)
+	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build; \
+	$(ECHO) $(CC_GREEN) "Open devshell" $(CC_NORMAL); \
+	bitbake -c devshell $(BB_RECIPE)
 
 clean:
 	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
-	@source $(YOCTO_ENV_SCRIPT) 
-	@$(ECHO) $(CC_GREEN) "Clean" $(CC_NORMAL)
-	@bitbake -c cleanall $(BB_RECIPE)
+	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build; \
+	$(ECHO) $(CC_GREEN) "Clean" $(CC_NORMAL); \
+	bitbake -c cleanall $(BB_RECIPE)
 
 distclean:
 	@$(ECHO) $(CC_GREEN) "Removing directories." $(CC_NORMAL)

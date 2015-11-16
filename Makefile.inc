@@ -28,6 +28,8 @@ CC_NORMAL		= "\033[m\017"
 
 # Commands
 ECHO			= echo
+SOURCE			= $(shell source)
+SHELL			= /bin/sh
 
 # Internal of Rumble PI structure
 ROOT_DIR		= $(shell pwd)
@@ -60,5 +62,5 @@ BBLAYER_FILE		= $(CONFIG_FILES_DIR)/bblayers.conf
 
 # Bitbake variables
 BB_RECIPE		= rumblepi-image-base
-YOCTO_ENV_SCRIPT	= $(YOCTO_DIR)/oe-init-build-env
+YOCTO_ENV_SCRIPT	= oe-init-build-env
 

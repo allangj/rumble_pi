@@ -42,8 +42,15 @@ config:
 	@git clone -b $(META_OE_BRANCH) $(META_OE_GIT) $(META_OE_DIR)
 	@$(ECHO) $(CC_GREEN) "Create output download and build directories" $(CC_NORMAL)
 	@mkdir -p $(OUT_DIR) $(BUILD_DIR) $(DOWNLOAD_DIR)
+	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
+	@source $(YOCTO_ENV_SCRIPT) 
+	@$(ECHO) $(CC_GREEN) "Return to top dir" $(CC_NORMAL)
+	@cd $(ROOT_DIR)
 	@$(ECHO) $(CC_GREEN) "Download directory link" $(CC_NORMAL)
 	@ln -s $(DOWNLOAD_DIR) $(BUILD_DIR)/downloads
+	@$(ECHO) $(CC_GREEN) "Copy configuration files" $(CC_NORMAL)
+	@cp $(CONFIG_FILES_DIR)/bblayers.conf $(BUILD_DIR)/conf/bblayers.conf
+	@cp $(CONFIG_FILES_DIR)/local.conf $(BUILD_DIR)/conf/local.conf
 
 devshell:
 	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)

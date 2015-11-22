@@ -37,12 +37,13 @@ YOCTO_DIR		= yocto
 BUILD_DIR		= $(YOCTO_DIR)/build
 DOWNLOAD_DIR		= $(ROOT_DIR)/downloads
 OUT_DIR			= images
-META_RASP_DIR		= $(YOCTO_DIR)/meta-raspberry
+META_RASP_DIR		= $(YOCTO_DIR)/meta-raspberrypi
 META_OE_DIR		= $(YOCTO_DIR)/meta-openembedded
 META_OE_OE_DIR		= $(META_OE_DIR)/meta-oe
 META_OE_MULTIMEDIA	= $(META_OE_DIR)/meta-multimedia
 TOOLS_DIR		= tools
 CONFIG_FILES_DIR	= $(TOOLS_DIR)/config_files
+SCRIPTS_DIR		= $(TOOLS_DIR)/scripts
 
 # Meta layers URLS and branches/tags
 # meta-raspberry depends on yocto master branch accordig summary

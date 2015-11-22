@@ -30,10 +30,8 @@ all: build
 
 
 build:
-	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
-	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build; \
-	$(ECHO) $(CC_GREEN) "Start build process" $(CC_NORMAL); \
-	bitbake $(BB_RECIPE)
+	@$(ECHO) $(CC_GREEN) "Construct $(BB_RECIPE)" $(CC_NORMAL)
+	@$(SCRIPTS_DIR)/build_script.sh $(YOCTO_DIR) $(BUILD_DIR) build $(BB_RECIPE)
 
 config:
 	@$(ECHO) $(CC_GREEN) "Cloning repositories" $(CC_NORMAL)
@@ -49,18 +47,17 @@ config:
 	@$(ECHO) $(CC_GREEN) "Copy configuration files" $(CC_NORMAL)
 	@cp $(CONFIG_FILES_DIR)/bblayers.conf $(BUILD_DIR)/conf/bblayers.conf
 	@cp $(CONFIG_FILES_DIR)/local.conf $(BUILD_DIR)/conf/local.conf
+	@sed -i s\|YOCTO_DIR\|$(ROOT_DIR)/$(YOCTO_DIR)\|g $(BUILD_DIR)/conf/bblayers.conf
+	@sed -i s\|RUMBLEPI_DIR\|$(ROOT_DIR)\|g $(BUILD_DIR)/conf/bblayers.conf
 
 devshell:
-	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
-	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build; \
-	$(ECHO) $(CC_GREEN) "Open devshell" $(CC_NORMAL); \
-	bitbake -c devshell $(BB_RECIPE)
+	@$(ECHO) $(CC_GREEN) "DevShell $(BB_RECIPE)" $(CC_NORMAL)
+	@$(SCRIPTS_DIR)/build_script.sh $(YOCTO_DIR) $(BUILD_DIR) devshell $(BB_RECIPE)
+
 
 clean:
-	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
-	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build; \
-	$(ECHO) $(CC_GREEN) "Clean" $(CC_NORMAL); \
-	bitbake -c cleanall $(BB_RECIPE)
+	@$(ECHO) $(CC_GREEN) "Clean $(BB_RECIPE)" $(CC_NORMAL)
+	@$(SCRIPTS_DIR)/build_script.sh $(YOCTO_DIR) $(BUILD_DIR) clean $(BB_RECIPE)
 
 distclean:
 	@$(ECHO) $(CC_GREEN) "Removing directories." $(CC_NORMAL)

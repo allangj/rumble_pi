@@ -17,27 +17,35 @@ input_check()
    # Check number of parameter
    if [ 4 != $# ]; then
       echo "Wrong number of arguments"
-      exit -1
+      exit 1
    fi
    # Check yocto_dir exist and as the source file
    if [ ! -f "${args[0]}/oe-init-build-env" ]; then
       echo "Source file doesn't exits"
-      exit -1
+      exit 1
    fi
    # Check build_dir exist
    if [ ! -d ${args[1]} ]; then
       echo "Build dir doesn't exits"
-      exit -1
+      exit 1
    fi
    # Check posible targets
    if [ "build" != ${args[2]} ] && [ "clean" != ${args[2]} ] && [ "devshell" != ${args[2]} ]; then
       echo "Wrong target"
-      exit -1
+      exit 1
    fi
    # Recipe is not eval here
 }
 
-
-inputs="$@"
-input_check $inputs
+inputs=("$@")
+input_check "$@"
+# Source env script
+source "${inputs[0]}/oe-init-build-env" ${inputs[1]}
+if [ "build" == ${inputs[2]} ]; then
+   bitbake ${inputs[3]}
+elif [ "clean" == ${inputs[2]} ]; then
+   bitbake -c clean ${inputs[3]}
+elif [ "devshell" == ${inputs[2]} ]; then
+   bitbake -c devshell ${inputs[3]}
+fi
 

@@ -39,7 +39,8 @@ config:
 	@git clone -b $(META_RASP_PI_BRANCH) $(META_RASP_PI_GIT) $(META_RASP_DIR)
 	@git clone -b $(META_OE_BRANCH) $(META_OE_GIT) $(META_OE_DIR)
 	@$(ECHO) $(CC_GREEN) "Create output download and build directories" $(CC_NORMAL)
-	@mkdir -p $(OUT_DIR) $(BUILD_DIR) $(DOWNLOAD_DIR)
+	@mkdir -p $(BUILD_DIR) $(DOWNLOAD_DIR)
+	@ln -s $(IMAGES_YOCTO_DIR) $(OUT_DIR)
 	@$(ECHO) $(CC_GREEN) "Source the yocto env" $(CC_NORMAL)
 	@cd $(YOCTO_DIR); $(SHELL) $(YOCTO_ENV_SCRIPT) build
 	@$(ECHO) $(CC_GREEN) "Download directory link" $(CC_NORMAL)

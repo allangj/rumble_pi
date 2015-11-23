@@ -35,6 +35,7 @@ SHELL			= /bin/sh
 ROOT_DIR		= $(shell pwd)
 YOCTO_DIR		= yocto
 BUILD_DIR		= $(YOCTO_DIR)/build
+IMAGES_YOCTO_DIR	= $(BUILD_DIR)/tmp/deploy/images/raspberrypi2/
 DOWNLOAD_DIR		= $(ROOT_DIR)/downloads
 OUT_DIR			= images
 META_RASP_DIR		= $(YOCTO_DIR)/meta-raspberrypi

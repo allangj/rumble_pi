@@ -1,9 +1,11 @@
 DESCRIPTION = "RaspberryPi window manager Packagegroup"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
 
 inherit packagegroup
 
+# Several items where removed using morty (leafpad, sato-icon-theme...)
+# Need to review if it is better to move to other packages for our window manager
 RDEPENDS_${PN} = "\
     x11-common \
     xauth \
@@ -28,7 +30,6 @@ RDEPENDS_${PN} = "\
     xtscal \
     disable-x11-blanking \
     formfactor \
-    leafpad \
     pcmanfm \
     pcmanfm-locale-en-gb \
     shutdown-desktop \
@@ -41,8 +42,6 @@ RDEPENDS_${PN} = "\
     matchbox-panel-2 \
     matchbox-session \
     matchbox-terminal \
-    matchbox-theme-sato \
     matchbox-wm \
-    sato-icon-theme \
     settings-daemon \
  "

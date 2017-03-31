@@ -3,11 +3,11 @@
 # and perform different task depending on the input
 # You can run the script by:
 # build_script <yocto_dir> <build_dir> <target> <recipe>
-# The inputs must bein the specified order:
+# The inputs must be in the specified order:
 # yocto_dir: Yocto directory
 # build_dir: Build directory
 # target: build | clean | devshell
-# recipe: any recipe you want if not specified image is created
+# recipe: any recipe you want, if not specified, default image is created
 
 # Put inputs in array
 

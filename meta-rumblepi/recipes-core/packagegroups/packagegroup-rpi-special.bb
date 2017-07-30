@@ -12,5 +12,6 @@ RDEPENDS_${PN} = "\
     rpi-gpio \
     pi-blaster \
     userland \
+    gpsd \
 "
 
